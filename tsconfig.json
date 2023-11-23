@@ -20,14 +20,6 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": "./",
-    "paths": {
-      "assets/": [
-        "./src/assets/*"
-      ],
-      "style/": [
-        "./src/styles/*"
-      ],
-    }
   },
   "include": [
     "src"

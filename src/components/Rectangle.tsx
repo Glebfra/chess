@@ -1,19 +1,24 @@
-import React, { ReactElement } from "react";
-import "../styles/Rectangle.css"
-import dark from "../assets/squares/square_gray_dark.svg";
-import light from "../assets/squares/square_gray_light.svg";
-import { Colors } from "src/models/Colors";
+import React, { CSSProperties, ReactElement, useState } from "react";
+import { sizes } from "src/math/Grid";
 
 function Rectangle(props: any): ReactElement {
-    let img;
-    if (props.color === Colors.WHITE) {
-        img = <img src={light}></img>
-    } else {
-        img = <img src={dark}></img>
-    }
+    const [styles, setStyles]: [CSSProperties, CallableFunction] = useState({
+        position: "absolute",
+        left: props.coordinates.x,
+        top: props.coordinates.y,
+        height: `${sizes.x}px`,
+        width: `${sizes.y}px`,
+        userSelect: "none",
+        pointerEvents: "none"
+    });
+    
     return (
         <div className="rectangle">
-            {img}
+            <img 
+                src={props.asset} 
+                style={styles} 
+                alt="rectangle"
+            />
         </div>
     )
 }
