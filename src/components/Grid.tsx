@@ -1,31 +1,25 @@
-import { ReactElement, useState } from "react";
-import Rectangle from "./Rectangle";
-import { convertToGridAbsoluteCoordinates } from "src/math/Grid";
-import * as assets from 'src/assets';
+import { ReactElement } from "react";
+import {
+	square_gray_dark as dark,
+	square_gray_light as light,
+} from "src/assets";
+import "src/styles/Grid.css";
 
 function Grid(): ReactElement {
-    const [colors, setColors] = useState({
-        light: assets.square_gray_light,
-        dark: assets.square_gray_dark
-    })
+	let elements: ReactElement[] = [];
+	for (let i = 0; i < 8; i++) {
+		for (let j = 0; j < 8; j++) {
+			elements.push(
+				<img
+					className="rectangle"
+					src={(i + j) % 2 === 0 ? light : dark}
+					alt="rectangle"
+				/>
+			);
+		}
+	}
 
-    let elements: ReactElement[] = [];
-    for (let i = 0; i < 8; i++) {
-        for (let j = 0; j < 8; j++) {
-            elements.push(
-                <Rectangle 
-                    asset={(i + j) % 2 === 0 ? colors.light : colors.dark} 
-                    coordinates={convertToGridAbsoluteCoordinates({x: i, y: j})}
-                />
-            );
-        }
-    }
-
-    return (
-        <div className="grid">
-            {elements.map(item => (item))}
-        </div>
-    );
+	return <div className="grid">{elements.map((item) => item)}</div>;
 }
 
 export default Grid;

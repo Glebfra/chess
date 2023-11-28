@@ -1,0 +1,17 @@
+:root {
+	--height: 100px;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(8, var(--height));
+	justify-content: center;
+	align-items: center;
+}
+
+.rectangle {
+	height: var(--height);
+	aspect-ratio: 1;
+	user-select: none;
+	pointer-events: none;
+}
